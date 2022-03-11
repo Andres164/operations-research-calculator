@@ -1,0 +1,30 @@
+We need 2 arrays to represent the simplex table 1 for columns and 1 for rows
+to determin their size, well ask the user to give us the number of decision variables
+and holguras.
+the columns size will be the given number of variables including holguras +1 for solution,
+and the rows, the holguras + 1, becouse of z row.
+now well ask the user to fill the decision variables's values in the table, row by row
+and also the solution column in the holguras
+every given row, we'll fill the holguras columns
+most of this thing will be done with for loop
+after this, its all  the programs work.
+we must now select our pivot.
+we fetch the lesser number in the z row with a for loop, now make a pointer that points
+to the pivot column.
+next well need another for loop.
+for the pivot row, we divide the holguras solution by the corespondient pivot column value
+to get the ratio, if the pivot columns value is zero or negative, it should be ignored, 
+well be comparing the previous smaller ratio with the current ratio, and if the ratio is smaller
+well point to that position with a pointer. at the end we should have a pointer pointing to
+the pivot row's array.
+now the pivot is found in ptr to pivotRow + pivot column index.
+
+now we start the first iteration
+we need another table with the same size as before to save the changes
+in the pivot row's index we insert pivotRow/pivot
+now we replace the other rows:
+row = row (-1 * (pivotColumnValue in row index) * (newPivotRowValue) ))
+all this with a loop
+and if theres negative numbers in z row, repeat
+if not
+print the simplex table
