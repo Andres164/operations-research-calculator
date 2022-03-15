@@ -16,7 +16,7 @@ int main()
 
 
     cout << "Write the table values: " << endl;
-    cout << "| Z";
+    cout << "Z row: " << endl << endl;
 
     for(int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
     {
@@ -24,17 +24,41 @@ int main()
         {
             if(columnIndex < numberOfDesicionVariables)
             {
-                cout << " | X" << columnIndex+1 << ": ";
+                cout << "X" << columnIndex+1 << ": ";
                 cin >> simplexTable[columnIndex + rowIndex * numberOfColumns];
             }
             else
             {
                 columnIndex += numberOfHolguras;
-                cout << " | Solution: ";
+                cout << "Solution: ";
                 cin >> simplexTable[columnIndex + rowIndex * numberOfColumns];
             }
         }
-        cout << endl << "H" << rowIndex +1;
+        if(rowIndex < numberOfRows-1)
+        {
+            cout << endl << "_________________________________________________________________________________" << endl;
+            cout << endl << "H" << rowIndex +1 << " row" << endl;
+        }
+    }
+
+    for(int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+    {
+        for(int holguraIndex = numberOfDesicionVariables; holguraIndex < numberOfHolguras + numberOfDesicionVariables; holguraIndex++)
+        {
+            if(rowIndex == holguraIndex +1 -numberOfDesicionVariables)
+                simplexTable[holguraIndex + rowIndex * numberOfColumns] = 1;
+            else
+                simplexTable[holguraIndex + rowIndex * numberOfColumns] = 0;
+        }
+    }
+
+    cout << endl << "_________________________________________________________________________________" << endl;
+    cout << endl << "Initial simplex Table: " << endl;
+    for(int i = 0; i < numberOfColumns * numberOfRows; i++)
+    {
+        cout << simplexTable[i] << " | ";
+        if((i+1)%numberOfColumns == 0)
+            cout << endl;
     }
 
     return 0;

@@ -28,3 +28,4 @@ all this with a loop
 and if theres negative numbers in z row, repeat
 if not
 print the simplex table
+
