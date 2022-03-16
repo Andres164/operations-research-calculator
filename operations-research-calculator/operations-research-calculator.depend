@@ -1,4 +1,5 @@
 # depslib dependency file v1.0
-1647370359 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
+1647460805 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
 	<iostream>
+	<stdio.h>
 
