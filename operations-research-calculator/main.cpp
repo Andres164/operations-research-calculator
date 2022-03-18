@@ -3,6 +3,8 @@
 
 using namespace std;
 
+void solveSimplexTable(double simplexTable[], int nunumberOfDesicionVariables, int numberOfHolguras);
+
 int main()
 {
     int numberOfDesicionVariables, numberOfHolguras;
@@ -61,6 +63,26 @@ int main()
         if((i+1)%numberOfColumns == 0)
             cout << endl;
     }
+
+    solveSimplexTable(&simplexTable[0], numberOfDesicionVariables, numberOfHolguras);
+
+    cout << endl << "_________________________________________________________________________________" << endl;
+    cout << endl << "Final simplex Table: " << endl;
+    for(int i = 0; i < numberOfColumns * numberOfRows; i++)
+    {
+        printf("%f | ", simplexTable[i]);
+        if((i+1)%numberOfColumns == 0)
+            cout << endl;
+    }
+
+    return 0;
+}
+
+void solveSimplexTable(double simplexTable[], int numberOfDesicionVariables, int numberOfHolguras)
+{
+    int numberOfColumns = numberOfDesicionVariables + numberOfHolguras +1;
+    int numberOfRows = numberOfHolguras +1;
+
 
     double* ptr_mostNegativeColumn = &simplexTable[0];
     for(int variableIndex = 1; variableIndex < numberOfDesicionVariables; variableIndex++)
@@ -122,15 +144,15 @@ int main()
             cin >> num;
         }
     }
-
-    cout << endl << "_________________________________________________________________________________" << endl;
-    cout << endl << "Final simplex Table: " << endl;
-    for(int i = 0; i < numberOfColumns * numberOfRows; i++)
+    for(int i = 0; i < numberOfColumns; i++)
     {
-        printf("%f | ", simplexTable[i]);
-        if((i+1)%numberOfColumns == 0)
-            cout << endl;
+        if(simplexTable[i] < 0)
+        {
+            solveSimplexTable(&simplexTable[0], numberOfDesicionVariables, numberOfHolguras);
+            break;
+        }
     }
-
-    return 0;
 }
+
+
+
