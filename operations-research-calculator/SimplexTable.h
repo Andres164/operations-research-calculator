@@ -11,9 +11,10 @@ protected:
     int numberOfColumns;
 
     // Protected Methods
+    void set_valueAt(int row, int column, double value);
     double get_valueAt(int row, int column);
-    double* getPtr_pivotRow();
-    double* getPtr_pivotColumn();
+    int get_pivotRowIndex();
+    int get_pivotColumnIndex();
     void initializeHolguras();
     void simplexIteration();
     void dualSimplexIteration();
@@ -23,10 +24,8 @@ public:
 
     // Methods
 
-    void set_valueAt(int row, int column, double value);
     bool isTableFeasible();
     bool isTableOptimum();
-
     void printTable();
     void solveTable();
 

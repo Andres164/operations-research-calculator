@@ -9,11 +9,10 @@ void solveSimplexTable(double simplexTable[], int nunumberOfDesicionVariables, i
 int main()
 {
     SimplexTable mySimplexTable(2, 3);
-    mySimplexTable.set_valueAt(2, 5, -1);
     mySimplexTable.printTable();
     cout << "is table feasible: "<< mySimplexTable.isTableFeasible() << endl;
     cout << "is table optimum: "<< mySimplexTable.isTableOptimum() << endl;
-    /*
+
     int numberOfDesicionVariables, numberOfHolguras;
     cout << "Number of desicion variables: ";
     cin >> numberOfDesicionVariables;

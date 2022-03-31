@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../operations-research-calculator" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,7 +33,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="SimplexTable.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="SimplexTable.h">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="main.cpp" />
+		<Unit filename="operationsResearch.cpp">
+			<Option target="Debug" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

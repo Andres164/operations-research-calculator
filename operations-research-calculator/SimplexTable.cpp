@@ -23,11 +23,24 @@ bool SimplexTable::isTableOptimum()
             return false;
     return true;
 }
-double* SimplexTable::getPtr_pivotRow()
+int SimplexTable::get_pivotRowIndex(bool isTableFeasible)
 {
-    return 0;
+    if(isTableFeasible)
+    {
+        int pivotColumn = this->get_pivotColumnIndex();
+        const int solutionColumn = this->numberOfColumns-1;
+        int currentRow = 1;
+        if(this->get_valueAt(currentRow, pivotColumn) == 0)
+            return currentRow
+        else
+            double currentSolutionValue = this->get_valueAt(currentRow, solutionColumn) / this->get_valueAt(currentRow, pivotColumn);
+    }
+    else
+    {
+
+    }
 }
-double* SimplexTable::getPtr_pivotColumn()
+int SimplexTable::get_pivotColumnIndex()
 {
     return 0;
 }
