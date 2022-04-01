@@ -8,8 +8,8 @@ void solveSimplexTable(double simplexTable[], int nunumberOfDesicionVariables, i
 
 int main()
 {
-    SimplexTable mySimplexTable(3, 3);
-
+    SimplexTable mySimplexTable(3, 4);
+    /*
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
     mySimplexTable.set_valueAt(0, 1, -8000);
@@ -32,12 +32,38 @@ int main()
     mySimplexTable.set_valueAt(3, 1, 2);
     mySimplexTable.set_valueAt(3, 2, 3);
     mySimplexTable.set_valueAt(3, 6, 18);
+    */
+    // Z
+    mySimplexTable.set_valueAt(0, 0, -6);
+    mySimplexTable.set_valueAt(0, 1, -12);
+    mySimplexTable.set_valueAt(0, 2, -10);
+
+    // H1
+    mySimplexTable.set_valueAt(1, 0, 5);
+    mySimplexTable.set_valueAt(1, 1, 8);
+    mySimplexTable.set_valueAt(1, 2, 13);
+    mySimplexTable.set_valueAt(1, 7, 4000);
+
+    // H2
+    mySimplexTable.set_valueAt(2, 0, 12);
+    mySimplexTable.set_valueAt(2, 1, 18);
+    mySimplexTable.set_valueAt(2, 2, 14);
+    mySimplexTable.set_valueAt(2, 7, 6000);
+
+    // H3
+    mySimplexTable.set_valueAt(3, 0, 1);
+    mySimplexTable.set_valueAt(3, 1, 1);
+    mySimplexTable.set_valueAt(3, 2, 1);
+    mySimplexTable.set_valueAt(3, 7, 600);
+
+    // H4
+    mySimplexTable.set_valueAt(4, 0, -1);
+    mySimplexTable.set_valueAt(4, 1, 0);
+    mySimplexTable.set_valueAt(4, 2, 0);
+    mySimplexTable.set_valueAt(4, 7, -200);
 
     mySimplexTable.printTable();
-
-    mySimplexTable.simplexIteration(mySimplexTable.get_pivotRowIndex(true), mySimplexTable.get_pivotColumnIndex());
-    cout << "final table: " << endl << endl;
-    mySimplexTable.printTable();
+    mySimplexTable.solveTable();
 
     /*
     cout << "is table feasible: "<< mySimplexTable.isTableFeasible() << endl;

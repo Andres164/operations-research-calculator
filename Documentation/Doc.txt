@@ -1,0 +1,20 @@
+- a SimplexTable class
+this will have 
+vector in wich the values will be stored
+int numberOfDecisionVariables,
+numberOfHolguras,
+numberOfRows,
+numberOfColumns
+
+methods
+initializeHolguras
+printTable
+solveTable
+simplexIteration
+dualSimplexIteration
+getPtr_pivotRow
+getPtr_pivotColumn
+
+operationsResearch .h and .cpp
+methods
+getSimplexTableFromUser

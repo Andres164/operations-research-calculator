@@ -19,7 +19,7 @@ public:
 
     void simplexIteration(const int pivotRow, const int pivotColumn);
     int get_pivotRowIndex(bool isTableFeasibl);
-    int get_pivotColumnIndex();
+    int get_pivotColumnIndex(bool isTableFeasible);
     // Constructors
     SimplexTable(int vNumberOfDecisionVariables, int vNumberOfHolguras);
 
