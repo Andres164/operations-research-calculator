@@ -8,11 +8,45 @@ void solveSimplexTable(double simplexTable[], int nunumberOfDesicionVariables, i
 
 int main()
 {
-    SimplexTable mySimplexTable(2, 3);
+    SimplexTable mySimplexTable(3, 3);
+
+    // Z
+    mySimplexTable.set_valueAt(0, 0, -10000);
+    mySimplexTable.set_valueAt(0, 1, -8000);
+    mySimplexTable.set_valueAt(0, 2, -15000);
+
+    // H1
+    mySimplexTable.set_valueAt(1, 0, 2);
+    mySimplexTable.set_valueAt(1, 1, 1);
+    mySimplexTable.set_valueAt(1, 2, 2);
+    mySimplexTable.set_valueAt(1, 6, 12);
+
+    // H2
+    mySimplexTable.set_valueAt(2, 0, 3);
+    mySimplexTable.set_valueAt(2, 1, 3);
+    mySimplexTable.set_valueAt(2, 2, 4);
+    mySimplexTable.set_valueAt(2, 6, 16);
+
+    // H3
+    mySimplexTable.set_valueAt(3, 0, 1);
+    mySimplexTable.set_valueAt(3, 1, 2);
+    mySimplexTable.set_valueAt(3, 2, 3);
+    mySimplexTable.set_valueAt(3, 6, 18);
+
     mySimplexTable.printTable();
+
+    mySimplexTable.simplexIteration(mySimplexTable.get_pivotRowIndex(true), mySimplexTable.get_pivotColumnIndex());
+    cout << "final table: " << endl << endl;
+    mySimplexTable.printTable();
+
+    /*
     cout << "is table feasible: "<< mySimplexTable.isTableFeasible() << endl;
     cout << "is table optimum: "<< mySimplexTable.isTableOptimum() << endl;
 
+    cout << "pivotRowIndex: " << mySimplexTable.get_pivotRowIndex(true) << endl;
+    cout << "pivotColumnIndex: " << mySimplexTable.get_pivotColumnIndex() << endl;
+
+/*
     int numberOfDesicionVariables, numberOfHolguras;
     cout << "Number of desicion variables: ";
     cin >> numberOfDesicionVariables;

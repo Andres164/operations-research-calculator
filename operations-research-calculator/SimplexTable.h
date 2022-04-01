@@ -11,14 +11,15 @@ protected:
     int numberOfColumns;
 
     // Protected Methods
-    void set_valueAt(int row, int column, double value);
-    double get_valueAt(int row, int column);
-    int get_pivotRowIndex();
-    int get_pivotColumnIndex();
     void initializeHolguras();
-    void simplexIteration();
     void dualSimplexIteration();
 public:
+    void set_valueAt(int row, int column, double value);
+    double get_valueAt(int row, int column);
+
+    void simplexIteration(const int pivotRow, const int pivotColumn);
+    int get_pivotRowIndex(bool isTableFeasibl);
+    int get_pivotColumnIndex();
     // Constructors
     SimplexTable(int vNumberOfDecisionVariables, int vNumberOfHolguras);
 

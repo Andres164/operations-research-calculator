@@ -1,17 +1,34 @@
 # depslib dependency file v1.0
-1648750322 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
+1648793241 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
 	<iostream>
 	<stdio.h>
 	"SimplexTable.h"
 
-1648748472 source:d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.cpp
+1648760428 source:d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.cpp
 	<iostream>
 	"SimplexTable.h"
 
-1648760357 d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.h
+1648793207 d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.h
 	<vector>
 
-1648754891 source:d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.cpp
+1648778371 source:d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.cpp
+	<iostream>
+	<vector>
+	"SimplexTable.h"
+
+1648760428 source:c:\practicas\operations-research-calculator-code-redesign\operations-research-calculator\operationsresearch.cpp
+	<iostream>
+	"SimplexTable.h"
+
+1648778371 c:\practicas\operations-research-calculator-code-redesign\operations-research-calculator\simplextable.h
+	<vector>
+
+1648778198 source:c:\practicas\operations-research-calculator-code-redesign\operations-research-calculator\main.cpp
+	<iostream>
+	<stdio.h>
+	"SimplexTable.h"
+
+1648778371 source:c:\practicas\operations-research-calculator-code-redesign\operations-research-calculator\simplextable.cpp
 	<iostream>
 	<vector>
 	"SimplexTable.h"
