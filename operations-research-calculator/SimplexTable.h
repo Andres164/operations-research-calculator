@@ -6,6 +6,8 @@ class SimplexTable
 {
 protected:
     std::vector<double> table;
+    std::vector<std::string> rowNames;
+    std::vector<std::string> columnNames;
     int numberOfDecisionVariables;
     int numberOfHolguras;
     int numberOfRows;
@@ -13,6 +15,8 @@ protected:
 
     // Protected Methods
     void initializeHolguras();
+    void initializeRowNames();
+    void initializeColumnNames();
 public:
     // Constructors
     SimplexTable(int vNumberOfDecisionVariables, int vNumberOfHolguras);
