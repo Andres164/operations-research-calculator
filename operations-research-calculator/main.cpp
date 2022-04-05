@@ -109,9 +109,7 @@ int main()
     mySimplexTable.set_valueAt(3, 2, -80);
     mySimplexTable.set_valueAt(3, 6, -70);
 /*/
-    cout << "initial table" << endl;
     mySimplexTable.printTable();
-    cout << endl << "_____________________________________" << endl;
     mySimplexTable.solveTable("MIN");
 }
 

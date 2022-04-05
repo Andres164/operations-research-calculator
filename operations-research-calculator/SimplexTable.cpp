@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "SimplexTable.h"
 
 // Protected Methods
@@ -112,7 +113,7 @@ int SimplexTable::get_pivotColumnIndex(const std::string MAXorMIN)
         int currentColumn = 0;
         int pivotColumn = 0;
         double smallestRatio = this->get_valueAt(zRow, currentColumn) / this->get_valueAt(pivotRow, currentColumn);
-        std::cout << std::endl << "samllestRatio 1st: " << smallestRatio << std::endl;
+        //std::cout << std::endl << "samllestRatio 1st: " << smallestRatio << std::endl;
         for(currentColumn++; currentColumn < this->numberOfColumns-1; currentColumn++)
         {
             double currentZRowValue = this->get_valueAt(zRow, currentColumn);
@@ -141,13 +142,31 @@ void SimplexTable::initializeHolguras()
         }
     }
 }
+void SimplexTable::initializeRowNames()
+{
+    this->rowNames[0] = "Z";
+    for(int i = 1; i < this->numberOfRows; i++)
+            this->rowNames[i] = "H" + std::to_string(i);
+}
+void SimplexTable::initializeColumnNames()
+{
+    this->columnNames[0] = "Basica";
+    for(int i = 1; i < this->numberOfColumns; i++)
+    {
+        if(i <= this->numberOfDecisionVariables)
+            this->columnNames[i] = "X" + std::to_string(i);
+        else
+            this->columnNames[i] = "H" + std::to_string(i-this->numberOfDecisionVariables);
+    }
+    this->columnNames[this->numberOfColumns] = "Solucion";
+}
 void SimplexTable::makeIteration(const std::string MAXorMIN)
 {
     const int pivotRow = this->get_pivotRowIndex(MAXorMIN), pivotColumn = this->get_pivotColumnIndex(MAXorMIN);
-    std::cout << "_________________________________________________________________" << std::endl;
+   /* std::cout << "_________________________________________________________________" << std::endl;
     std::cout << "Iteration's pivotRow: " << pivotRow << std::endl;
     std::cout << "Iteration's pivotColumn: " << pivotColumn << std::endl;
-    std::cout << "_________________________________________________________________" << std::endl;
+    std::cout << "_________________________________________________________________" << std::endl;*/
     double currentRowValue = this->get_valueAt(pivotRow, 0), pivotColumnValue = this->get_valueAt(pivotRow, pivotColumn);
     for(int rowIndex = -1; rowIndex < this->numberOfRows; rowIndex++)
     {
@@ -165,9 +184,9 @@ void SimplexTable::makeIteration(const std::string MAXorMIN)
         {
             for(int columnIndex = 0; columnIndex < this->numberOfColumns; columnIndex++)
             {
-                std::cout << "_________________________________________________________________" << std::endl;
+                /*std::cout << "_________________________________________________________________" << std::endl;
                 std::cout << "Division en nuevo renglon pivote ( " << currentRowValue << " / " << pivotColumnValue << " ):" << currentRowValue / pivotColumnValue << std::endl;
-                std::cout << "_________________________________________________________________" << std::endl;
+                std::cout << "_________________________________________________________________" << std::endl;*/
                 this->set_valueAt(pivotRow, columnIndex, currentRowValue / pivotColumnValue);
                 currentRowValue = this->get_valueAt(pivotRow, columnIndex+1);
             }
@@ -176,28 +195,39 @@ void SimplexTable::makeIteration(const std::string MAXorMIN)
 }
 
 // Constructors
-SimplexTable::SimplexTable(int vNumberOfDecisionVariables, int vNumberOfHolguras) :  numberOfDecisionVariables(vNumberOfDecisionVariables), numberOfHolguras(vNumberOfHolguras),
-                                                                                     numberOfRows(vNumberOfHolguras +1), numberOfColumns(vNumberOfDecisionVariables + vNumberOfHolguras +1)
+SimplexTable::SimplexTable(int vNumberOfDecisionVariables, int vNumberOfHolguras) :  numberOfDecisionVariables(vNumberOfDecisionVariables), numberOfHolguras(vNumberOfHolguras), numberOfRows(vNumberOfHolguras +1),
+                                                                                     numberOfColumns(vNumberOfDecisionVariables + vNumberOfHolguras +1)
 {
     this->table.resize(this->numberOfRows * this->numberOfColumns);
+    this->rowNames.resize(this->numberOfRows);
+    this->columnNames.resize(this->numberOfColumns+1);
     this->initializeHolguras();
+    this->initializeRowNames();
+    this->initializeColumnNames();
+
 }
 
 // Methods
 void SimplexTable::printTable()
 {
-    std::cout << std::endl;
-    for(int i = 0; i < numberOfColumns * numberOfRows; i++)
+    std::ofstream outputFile("../Output/output.csv", std::ios::app);
+    outputFile << std::endl;
+    for(std::string element : this->columnNames)
+        outputFile << element << ",";
+    outputFile << std::endl;
+    for(int currentRow = 0; currentRow < this->numberOfRows; currentRow++)
     {
-        std::cout << "| " << this->table[i] << " |";
-        if((i+1)%numberOfColumns == 0)
-            std::cout << std::endl;
+        outputFile << this->rowNames[currentRow] << ",";
+        for(int currentColumn = 0; currentColumn < this->numberOfColumns; currentColumn++)
+            outputFile << this->get_valueAt(currentRow, currentColumn) << ",";
+        outputFile << std::endl;
     }
-    std::cout << std::endl;
+    outputFile << std::endl;
+    outputFile.close();
 }
 void SimplexTable::solveTable(const std::string MAXorMIN)
 {
-    std::cout << "is table feasable: " << this->isTableFeasible() << std:: endl;
+    //std::cout << "is table feasable: " << this->isTableFeasible() << std:: endl;
     if(!this->isTableFeasible() || !this->isTableOptimum(MAXorMIN))
     {
         //std::cout << "table before iterating" << std:: endl;
@@ -207,5 +237,4 @@ void SimplexTable::solveTable(const std::string MAXorMIN)
         this->printTable();
         this->solveTable(MAXorMIN);
     }
-
 }
