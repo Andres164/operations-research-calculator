@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include "SimplexTable.h"
 
 // Protected Methods
@@ -31,19 +30,23 @@ bool SimplexTable::isTableFeasible()
     }
     return true;
 }
-bool SimplexTable::isTableOptimum()
+bool SimplexTable::isTableOptimum(const std::string MAXorMIN)
 {
     for(int i = 0; i < this->numberOfColumns; i++)
-        if(this->get_valueAt(0, i) < 0)
+    {
+        if(MAXorMIN == "MAX" && this->get_valueAt(0, i) < 0)
             return false;
+        else if(MAXorMIN == "MIN" && this->get_valueAt(0, i) > 0)
+            return false;
+    }
     return true;
 }
-int SimplexTable::get_pivotRowIndex(bool isTableFeasible)
+int SimplexTable::get_pivotRowIndex(const std::string MAXorMIN = "")
 {
-    if(isTableFeasible)
+    if(this->isTableFeasible())
     {
         const int solutionColumn = this->numberOfColumns-1;
-        const int pivotColumn = this->get_pivotColumnIndex(isTableFeasible);
+        const int pivotColumn = this->get_pivotColumnIndex(MAXorMIN);
         int currentRow = 1;
         int pivotRow = 1;
         double smallestRatio = this->get_valueAt(currentRow, solutionColumn) / this->get_valueAt(currentRow, pivotColumn);
@@ -79,18 +82,24 @@ int SimplexTable::get_pivotRowIndex(bool isTableFeasible)
         return pivotRow;
     }
 }
-int SimplexTable::get_pivotColumnIndex(bool isTableFeasible)
+int SimplexTable::get_pivotColumnIndex(const std::string MAXorMIN)
 {
-    if(isTableFeasible)
+     if(this->isTableFeasible())
     {
         const int zRow = 0;
         int pivotColumn = 0;
-        double mostNegativeValue = this->get_valueAt(zRow, 0);
+        double pivotValue = this->get_valueAt(zRow, 0);
         for(int currentColumn = 1; currentColumn < (this->numberOfColumns-1); currentColumn++)
         {
-            if(this->get_valueAt(zRow, currentColumn) < mostNegativeValue)
+            if(MAXorMIN == "MAX" && this->get_valueAt(zRow, currentColumn) < pivotValue)
             {
-                mostNegativeValue = this->get_valueAt(zRow, currentColumn);
+                pivotValue = this->get_valueAt(zRow, currentColumn);
+                pivotColumn = currentColumn;
+            }
+            else if( pivotValue == 0 || ( MAXorMIN == "MIN" && this->get_valueAt(zRow, currentColumn) != 0 && this->get_valueAt(zRow, currentColumn) > pivotValue ) )
+            {
+                std::cout << "pivotValue: " << pivotValue << std::endl;
+                pivotValue = this->get_valueAt(zRow, currentColumn);
                 pivotColumn = currentColumn;
             }
         }
@@ -98,20 +107,20 @@ int SimplexTable::get_pivotColumnIndex(bool isTableFeasible)
     }
     else
     {
-        const int pivotRow = this->get_pivotRowIndex(isTableFeasible);
+        const int pivotRow = this->get_pivotRowIndex();
         const int zRow = 0;
         int currentColumn = 0;
         int pivotColumn = 0;
         double smallestRatio = this->get_valueAt(zRow, currentColumn) / this->get_valueAt(pivotRow, currentColumn);
-        //std::cout << std::endl << "samllestRatio 1st: " << smallestRatio << std::endl;
+        std::cout << std::endl << "samllestRatio 1st: " << smallestRatio << std::endl;
         for(currentColumn++; currentColumn < this->numberOfColumns-1; currentColumn++)
         {
             double currentZRowValue = this->get_valueAt(zRow, currentColumn);
             if(this->get_valueAt(pivotRow, currentColumn) != 0)
             {
-                std::cout << "entered the if: " << currentColumn << std::endl;
+                //std::cout << "entered the if: " << currentColumn << std::endl;
                 double currentRatio = currentZRowValue / this->get_valueAt(pivotRow, currentColumn);
-                if(currentRatio > 0 && (currentRatio < smallestRatio || smallestRatio < 0))
+                if(!smallestRatio || currentRatio > 0 && (currentRatio < smallestRatio || smallestRatio < 0))
                 {
                     smallestRatio = currentRatio;
                     pivotColumn = currentColumn;
@@ -132,8 +141,13 @@ void SimplexTable::initializeHolguras()
         }
     }
 }
-void SimplexTable::simplexIteration(const int pivotRow, const int pivotColumn)
+void SimplexTable::makeIteration(const std::string MAXorMIN)
 {
+    const int pivotRow = this->get_pivotRowIndex(MAXorMIN), pivotColumn = this->get_pivotColumnIndex(MAXorMIN);
+    std::cout << "_________________________________________________________________" << std::endl;
+    std::cout << "Iteration's pivotRow: " << pivotRow << std::endl;
+    std::cout << "Iteration's pivotColumn: " << pivotColumn << std::endl;
+    std::cout << "_________________________________________________________________" << std::endl;
     double currentRowValue = this->get_valueAt(pivotRow, 0), pivotColumnValue = this->get_valueAt(pivotRow, pivotColumn);
     for(int rowIndex = -1; rowIndex < this->numberOfRows; rowIndex++)
     {
@@ -149,22 +163,16 @@ void SimplexTable::simplexIteration(const int pivotRow, const int pivotColumn)
         }
         else if(rowIndex == -1)
         {
-            /*cout << "ptr_PivotRow: " << ptr_pivotRow << endl;
-            cout << "*ptr_PivotRow: " << *ptr_pivotRow << endl;*/
             for(int columnIndex = 0; columnIndex < this->numberOfColumns; columnIndex++)
             {
+                std::cout << "_________________________________________________________________" << std::endl;
+                std::cout << "Division en nuevo renglon pivote ( " << currentRowValue << " / " << pivotColumnValue << " ):" << currentRowValue / pivotColumnValue << std::endl;
+                std::cout << "_________________________________________________________________" << std::endl;
                 this->set_valueAt(pivotRow, columnIndex, currentRowValue / pivotColumnValue);
                 currentRowValue = this->get_valueAt(pivotRow, columnIndex+1);
             }
-            //cout << "ptr_PivotRow: " << ptr_pivotRow << endl;
-            //int num;
-            //cin >> num;
         }
     }
-}
-void SimplexTable::dualSimplexIteration()
-{
-
 }
 
 // Constructors
@@ -187,18 +195,17 @@ void SimplexTable::printTable()
     }
     std::cout << std::endl;
 }
-void SimplexTable::solveTable()
+void SimplexTable::solveTable(const std::string MAXorMIN)
 {
-    if(!isTableFeasible())
+    std::cout << "is table feasable: " << this->isTableFeasible() << std:: endl;
+    if(!this->isTableFeasible() || !this->isTableOptimum(MAXorMIN))
     {
-        this->simplexIteration(this->get_pivotRowIndex(false), this->get_pivotColumnIndex(false));
+        //std::cout << "table before iterating" << std:: endl;
+        //this->printTable();
+        this->makeIteration(MAXorMIN);
+        //std::cout << "table after iterating" << std:: endl;
+        this->printTable();
+        this->solveTable(MAXorMIN);
     }
-    else if(!isTableOptimum())
-    {
-        this->simplexIteration(this->get_pivotRowIndex(true), this->get_pivotColumnIndex(true));
-    }
-    this->printTable();
-    if(!isTableFeasible() || !isTableOptimum())
-        this->solveTable();
 
 }
