@@ -32,7 +32,7 @@ bool SimplexTable::isTableFeasible()
 }
 bool SimplexTable::isTableOptimum(const std::string MAXorMIN)
 {
-    for(int i = 0; i < this->numberOfColumns; i++)
+    for(int i = 0; i < this->numberOfColumns -1; i++)
     {
         if(MAXorMIN == "MAX" && this->get_valueAt(0, i) < 0)
             return false;
@@ -120,7 +120,7 @@ int SimplexTable::get_pivotColumnIndex(const std::string MAXorMIN)
             {
                 //std::cout << "entered the if: " << currentColumn << std::endl;
                 double currentRatio = currentZRowValue / this->get_valueAt(pivotRow, currentColumn);
-                if(!smallestRatio || currentRatio > 0 && (currentRatio < smallestRatio || smallestRatio < 0))
+                if( ( currentRatio > 0 && (currentRatio < smallestRatio || smallestRatio < 0) ) || smallestRatio != smallestRatio)
                 {
                     smallestRatio = currentRatio;
                     pivotColumn = currentColumn;

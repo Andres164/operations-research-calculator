@@ -8,7 +8,7 @@ void solveSimplexTable(double simplexTable[], int nunumberOfDesicionVariables, i
 
 int main()
 {
-    SimplexTable mySimplexTable(3, 3);
+    SimplexTable mySimplexTable(2, 3);
     /*/ Tabla 1
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
@@ -65,7 +65,7 @@ int main()
     mySimplexTable.set_valueAt(4, 2, 0);
     mySimplexTable.set_valueAt(4, 7, -200);
 /*/
-/*/ Tabla 3
+// Tabla 3
     // Z
     mySimplexTable.set_valueAt(0, 0, -100);
     mySimplexTable.set_valueAt(0, 1, -150);
@@ -84,8 +84,8 @@ int main()
     mySimplexTable.set_valueAt(3, 0, -2);
     mySimplexTable.set_valueAt(3, 1, -2);
     mySimplexTable.set_valueAt(3, 5, -10);
-//*/
-// Tabla 1
+///
+/*/ Tabla 1
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
     mySimplexTable.set_valueAt(0, 1, -11000);
@@ -108,7 +108,7 @@ int main()
     mySimplexTable.set_valueAt(3, 1, -80);
     mySimplexTable.set_valueAt(3, 2, -80);
     mySimplexTable.set_valueAt(3, 6, -70);
-//
+/*/
     cout << "initial table" << endl;
     mySimplexTable.printTable();
     cout << endl << "_____________________________________" << endl;
