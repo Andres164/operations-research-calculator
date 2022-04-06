@@ -43,6 +43,9 @@
 		<Unit filename="operationsResearch.cpp">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="operationsResearch.h">
+			<Option target="Debug" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
