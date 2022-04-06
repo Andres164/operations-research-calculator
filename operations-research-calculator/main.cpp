@@ -1,10 +1,9 @@
 #include <iostream>
 #include <stdio.h>
 #include "SimplexTable.h"
+#include "operationsResearch.h"
 
 using namespace std;
-
-void simplifyFraction(long int&, long int&);
 
 int main()
 {
@@ -85,7 +84,7 @@ int main()
     mySimplexTable.set_valueAt(3, 1, -2);
     mySimplexTable.set_valueAt(3, 5, -10);
 //*/
-/*/ Tabla 1
+/*/ Tabla 4
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
     mySimplexTable.set_valueAt(0, 1, -11000);
@@ -111,9 +110,8 @@ int main()
 /*/
     //mySimplexTable.printTable();
     //mySimplexTable.solveTable("MIN");
-    long int num = 24, den = 64;
-    simplifyFraction(num, den);
-    cout << num << "/" << den;
+    double num = 0.165216;
+    cout << decimalToFraction(num);
 }
 
 
