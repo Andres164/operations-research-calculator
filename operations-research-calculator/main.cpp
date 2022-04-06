@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void solveSimplexTable(double simplexTable[], int nunumberOfDesicionVariables, int numberOfHolguras);
+void simplifyFraction(long int&, long int&);
 
 int main()
 {
@@ -65,7 +65,7 @@ int main()
     mySimplexTable.set_valueAt(4, 2, 0);
     mySimplexTable.set_valueAt(4, 7, -200);
 /*/
-// Tabla 3
+/*/ Tabla 3
     // Z
     mySimplexTable.set_valueAt(0, 0, -100);
     mySimplexTable.set_valueAt(0, 1, -150);
@@ -84,7 +84,7 @@ int main()
     mySimplexTable.set_valueAt(3, 0, -2);
     mySimplexTable.set_valueAt(3, 1, -2);
     mySimplexTable.set_valueAt(3, 5, -10);
-///
+//*/
 /*/ Tabla 1
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
@@ -109,8 +109,11 @@ int main()
     mySimplexTable.set_valueAt(3, 2, -80);
     mySimplexTable.set_valueAt(3, 6, -70);
 /*/
-    mySimplexTable.printTable();
-    mySimplexTable.solveTable("MIN");
+    //mySimplexTable.printTable();
+    //mySimplexTable.solveTable("MIN");
+    long int num = 24, den = 64;
+    simplifyFraction(num, den);
+    cout << num << "/" << den;
 }
 
 
