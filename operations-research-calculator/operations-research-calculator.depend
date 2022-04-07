@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1649276593 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
+1649308394 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
 	<iostream>
 	<stdio.h>
 	"SimplexTable.h"
 	"operationsResearch.h"
 
-1649276737 source:d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.cpp
+1649277082 source:d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.cpp
 	<iostream>
 	<cstring>
 	<math.h>

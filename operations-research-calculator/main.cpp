@@ -64,7 +64,7 @@ int main()
     mySimplexTable.set_valueAt(4, 2, 0);
     mySimplexTable.set_valueAt(4, 7, -200);
 /*/
-/*/ Tabla 3
+// Tabla 3
     // Z
     mySimplexTable.set_valueAt(0, 0, -100);
     mySimplexTable.set_valueAt(0, 1, -150);
@@ -83,7 +83,7 @@ int main()
     mySimplexTable.set_valueAt(3, 0, -2);
     mySimplexTable.set_valueAt(3, 1, -2);
     mySimplexTable.set_valueAt(3, 5, -10);
-//*/
+///
 /*/ Tabla 4
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
@@ -108,10 +108,8 @@ int main()
     mySimplexTable.set_valueAt(3, 2, -80);
     mySimplexTable.set_valueAt(3, 6, -70);
 /*/
-    //mySimplexTable.printTable();
-    //mySimplexTable.solveTable("MIN");
-    double num = 0.165216;
-    cout << decimalToFraction(num);
+    mySimplexTable.printTable();
+    mySimplexTable.solveTable("MIN");
 }
 
 
