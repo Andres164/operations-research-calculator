@@ -209,6 +209,33 @@ SimplexTable::SimplexTable(int vNumberOfDecisionVariables, int vNumberOfHolguras
 }
 
 // Methods
+/*
+void readInitialTable()
+{
+    std::ifstream inputFile("../Input/input.txt");
+    if(!inputFile)
+    {
+        std::cout << "Error: File couldn't be opened (archivo no se pudo abrir)";
+        std::cin;
+        return;
+    }
+    std::string inputLine;
+    std::string maxOrMin;
+    for(int i = 0; std::getline(inputFile, inputLine); i++)
+    {
+        if(i > 0)
+        {
+
+        }
+        else
+        {
+            maxOrMin = std::substr(0, 3);
+            std::cout << "maxOrMin: " << maxOrMin << std::endl;
+            inputLine = std::substr(2, std::npos);
+
+        }
+    }
+}*/
 void SimplexTable::printTable()
 {
     std::ofstream outputFile("../Output/output.csv", std::ios::app);
