@@ -30,7 +30,6 @@ public:
     int get_pivotColumnIndex(const std::string MAXorMIN);
 
     // Methods
-
     bool isTableFeasible();
     bool isTableOptimum(const std::string MAXorMIN);
     void printTable();

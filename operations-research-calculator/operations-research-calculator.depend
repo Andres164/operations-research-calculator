@@ -1,21 +1,22 @@
 # depslib dependency file v1.0
-1649308394 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
+1649357972 source:d:\repositorios\operations-research-calculator\operations-research-calculator\main.cpp
 	<iostream>
 	<stdio.h>
 	"SimplexTable.h"
 	"operationsResearch.h"
 
-1649277082 source:d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.cpp
+1649358085 source:d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.cpp
 	<iostream>
 	<cstring>
 	<math.h>
+	<fstream>
 	"operationsResearch.h"
 
-1649187302 d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.h
+1649355970 d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.h
 	<vector>
 	<string>
 
-1649187302 source:d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.cpp
+1649357161 source:d:\repositorios\operations-research-calculator\operations-research-calculator\simplextable.cpp
 	<iostream>
 	<fstream>
 	"SimplexTable.h"
@@ -41,7 +42,7 @@
 	<iostream>
 	"SimplexTable.h"
 
-1649276751 d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.h
+1649357972 d:\repositorios\operations-research-calculator\operations-research-calculator\operationsresearch.h
 	<string>
 	"SimplexTable.h"
 

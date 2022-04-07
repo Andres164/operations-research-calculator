@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    SimplexTable mySimplexTable(2, 3);
+    SimplexTable mySimplexTable = getSimplexTableFromUser();
     /*/ Tabla 1
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
@@ -64,26 +64,6 @@ int main()
     mySimplexTable.set_valueAt(4, 2, 0);
     mySimplexTable.set_valueAt(4, 7, -200);
 /*/
-// Tabla 3
-    // Z
-    mySimplexTable.set_valueAt(0, 0, -100);
-    mySimplexTable.set_valueAt(0, 1, -150);
-
-    // H1
-    mySimplexTable.set_valueAt(1, 0, -20);
-    mySimplexTable.set_valueAt(1, 1, -10);
-    mySimplexTable.set_valueAt(1, 5, -100);
-
-    // H2
-    mySimplexTable.set_valueAt(2, 0, -3);
-    mySimplexTable.set_valueAt(2, 1, -6);
-    mySimplexTable.set_valueAt(2, 5, -25);
-
-    // H3
-    mySimplexTable.set_valueAt(3, 0, -2);
-    mySimplexTable.set_valueAt(3, 1, -2);
-    mySimplexTable.set_valueAt(3, 5, -10);
-///
 /*/ Tabla 4
     // Z
     mySimplexTable.set_valueAt(0, 0, -10000);
@@ -109,7 +89,10 @@ int main()
     mySimplexTable.set_valueAt(3, 6, -70);
 /*/
     mySimplexTable.printTable();
-    mySimplexTable.solveTable("MIN");
+    string input;
+    cout << "Quieres Maximizar o minimizar ( MAX / MIN ) : ";
+    cin >> input;
+    mySimplexTable.solveTable(input);
 }
 
 
