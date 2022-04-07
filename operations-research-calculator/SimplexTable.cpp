@@ -192,6 +192,7 @@ void SimplexTable::makeIteration(const std::string MAXorMIN)
             }
         }
     }
+    this->rowNames[pivotRow] = this->columnNames[pivotColumn+1];
 }
 
 // Constructors
